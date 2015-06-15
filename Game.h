@@ -9,7 +9,8 @@ public:
   Game();
   ~Game();
 
-  void init() { m_bRunning = true; }
+  bool init(const char* title, int xpos, int ypos,
+    int width, int height, bool fullscreen);
 
   void render();
   void update();
@@ -20,7 +21,7 @@ public:
 
 private:
   bool m_bRunning;
-  
+
   SDL_Window* m_pWindow;
   SDL_Renderer* m_pRenderer;
 };

@@ -6,9 +6,9 @@ int main (int argc, char* argv[])
 {
   g_game = new Game();
 
-  g_game->init("Chapter 1", 100, 100, 640, 480, 0);
+  g_game->init("Chapter 1", 100, 100, 640, 480, false);
 
-  while (g_game->running())
+  while (g_game->isRunning())
   {
     g_game->handleEvents();
     g_game->update();
