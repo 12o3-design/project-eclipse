@@ -4,9 +4,9 @@ SDLLIBS = -Wl,-Bstatic 'sdl-config --static-libs' -Wl,-Bdynamic
 # If your compiler is a bit older you may need to change -std=c++11 to -std=c++0x
 CXXFLAGS = -Wall -c -std=c++11
 LDFLAGS = $(SDL)
-SOURCES = main.cpp Game.cpp #TextureManager.cpp
+SOURCES = main.cpp Game.cpp TextureManager.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
-EXE = chapter1
+EXE = game
 
 
 all: $(SOURCES) $(EXE)

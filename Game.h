@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <SDL2/SDL.h>
+#include "TextureManager.h"
 
 class Game
 {
@@ -24,6 +25,8 @@ private:
 
   SDL_Window* m_pWindow;
   SDL_Renderer* m_pRenderer;
+
+  int m_currentFrame;
 };
 
 #endif // defined GAME_H
