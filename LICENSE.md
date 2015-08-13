@@ -1,12 +1,5 @@
 The engine code is licenced under the MIT Licence, as seen below.
-All intellectual property, including but not limited to:
-
-* Characters
-* Writing
-* Art
-* Music
-
-are the property of 12o3 Games.
+All intellectual property, including but not limited to characters, writing, art, and music, are copyright 12o3 Games. All rights reserved.
 
 The MIT License (MIT)
 
