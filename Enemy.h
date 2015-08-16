@@ -1,16 +1,14 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-#include "GameObject.h"
+#include "SDLGameObject.h"
 
-class Enemy : public GameObject
+class Enemy : public SDLGameObject
 {
 public:
-  Enemy();
-  ~Enemy();
+  Enemy(const LoaderParams* pParams);
 
-  void load (int x, int y, int width, int height, std::string textureID);
-  void draw (SDL_Renderer* pRenderer);
+  void draw(TextureManager& TheTextureManager);
   void update();
   void clean();
 };

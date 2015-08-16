@@ -11,8 +11,15 @@
 class Game
 {
 public:
-  Game();
-  ~Game();
+  static Game* Instance()
+  {
+    if(s_pInstance == 0)
+    {
+      s_pInstance = new Game();
+      return s_pInstance;
+    }
+    return s_pInstance;
+  }
 
   bool init(const char* title, int xpos, int ypos,
     int width, int height, bool fullscreen);
@@ -24,7 +31,14 @@ public:
 
   bool isRunning() { return m_bRunning; }
 
+  SDL_Renderer* getRenderer() const { return m_pRenderer; }
+
 private:
+  Game();
+  ~Game() { delete s_pInstance; }
+
+  static Game* s_pInstance;
+
   bool m_bRunning;
 
   SDL_Window* m_pWindow;
@@ -32,10 +46,11 @@ private:
 
   int m_currentFrame;
 
-  GameObject* m_go;
-  GameObject* m_player;
-  GameObject* m_enemy;
+  TextureManager TheTextureManager;
+
   std::vector<GameObject*> m_gameObjects;
 };
+
+typedef Game TheGame;
 
 #endif // defined GAME_H
