@@ -8,9 +8,9 @@ class Player : public SDLGameObject
 public:
   Player(const LoaderParams* pParams);
 
-  virtual void draw(TextureManager& TheTextureManager);
-  virtual void update();
-  virtual void clean();
+  void draw(SDL_Renderer* m_renderer, TextureManager* m_textureManager);
+  void update();
+  void clean();
 
 };
 

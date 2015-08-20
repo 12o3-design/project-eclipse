@@ -3,16 +3,17 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
+#include <memory>
 #include "TextureManager.h"
 #include "GameObject.h"
 #include "LoaderParams.h"
 
-class SDLGameObject : public GameObject
+class SDLGameObject
 {
 public:
   SDLGameObject(const LoaderParams* pParams);
 
-  virtual void draw(TextureManager& TheTextureManager);
+  virtual void draw(SDL_Renderer* m_renderer, TextureManager* m_textureManager);
   virtual void update();
   virtual void clean();
 

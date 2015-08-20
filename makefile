@@ -6,7 +6,7 @@ CXXFLAGS = -Wall -c -std=c++11
 LDFLAGS = $(SDL)
 SOURCES = main.cpp Game.cpp TextureManager.cpp GameObject.cpp Player.cpp Enemy.cpp LoaderParams.cpp SDLGameObject.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
-EXE = game
+EXE = eclipse
 
 
 all: $(SOURCES) $(EXE)

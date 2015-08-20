@@ -5,9 +5,9 @@ Enemy::Enemy(const LoaderParams* pParams) : SDLGameObject(pParams)
 
 }
 
-void Enemy::draw(TextureManager& TheTextureManager)
+void Enemy::draw(SDL_Renderer* m_renderer, TextureManager* m_textureManager)
 {
-  SDLGameObject::draw(TheTextureManager);
+  SDLGameObject::draw(m_renderer, m_textureManager);
 }
 
 void Enemy::update()

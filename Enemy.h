@@ -8,7 +8,7 @@ class Enemy : public SDLGameObject
 public:
   Enemy(const LoaderParams* pParams);
 
-  void draw(TextureManager& TheTextureManager);
+  void draw(SDL_Renderer* m_renderer, TextureManager* m_textureManager);
   void update();
   void clean();
 };

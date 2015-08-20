@@ -2,9 +2,29 @@
 
 bool TextureManager::instantiated = false;
 
-bool TextureManager::load(std::string filename, std::string id,
-  SDL_Renderer* pRenderer)
+TextureManager::~TextureManager()
 {
+  std::cout << "Texture Manager dtor" << std::endl;
+  for (auto const& p : m_textureMap)
+  {
+    std::cout << "destroying " << p.second << " texture" << std::endl;
+    SDL_DestroyTexture(p.second);
+  }
+  m_textureMap.clear();
+}
+
+bool TextureManager::load(std::string filename, std::string id, SDL_Renderer* pRenderer)
+{
+  // find if texture already loaded
+  /*
+  auto texIterator = m_textureMap.find(filename);
+  if(texIterator != m_textureMap.end())
+  {
+    return texIterator.second;
+  }
+  */
+
+  // loads image as SDL surface
   SDL_Surface* pTempSurface = IMG_Load(filename.c_str());
 
   if (pTempSurface == 0)
@@ -12,9 +32,12 @@ bool TextureManager::load(std::string filename, std::string id,
     return false;
   }
 
+  // makes new texture from surface
   SDL_Texture* pTexture = SDL_CreateTextureFromSurface(pRenderer, pTempSurface);
 
   SDL_FreeSurface (pTempSurface);
+
+
 
   // texture loaded, add to list
   if (pTexture != 0)

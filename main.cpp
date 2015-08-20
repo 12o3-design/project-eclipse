@@ -1,19 +1,18 @@
 #include "Game.h"
 
-Game* g_game = 0;
-
 int main (int argc, char* argv[])
 {
+  Game* TheGame = new Game();
 
   std::cout << "Game init attempt" << std::endl;
-  if (TheGame::Instance()->init("Chapter 1", 100,100,640,480,false))
+  if (TheGame->init("Chapter 1", 100,100,640,480,false))
   {
     std::cout << "Game init success" << std::endl;
-    while (TheGame::Instance()->isRunning())
+    while (TheGame->isRunning())
     {
-      TheGame::Instance()->handleEvents();
-      TheGame::Instance()->update();
-      TheGame::Instance()->render();
+      TheGame->handleEvents();
+      TheGame->update();
+      TheGame->render();
 
       SDL_Delay(10);
     }
@@ -25,7 +24,7 @@ int main (int argc, char* argv[])
   }
 
   std::cout << "game closing..." << std::endl;
-  TheGame::Instance()->clean();
-
+  TheGame->clean();
+  delete TheGame;
   return 0;
 }

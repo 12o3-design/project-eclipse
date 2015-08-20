@@ -3,7 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include "TextureManager.h"
-#include "GameObject.h"
+#include "SDLGameObject.h"
 #include "Player.h"
 #include "Enemy.h"
 #include <vector>
@@ -11,14 +11,12 @@
 class Game
 {
 public:
-  static Game* Instance()
+
+  Game()
   {
-    if(s_pInstance == 0)
-    {
-      s_pInstance = new Game();
-      return s_pInstance;
-    }
-    return s_pInstance;
+    assert (!m_instantiated);
+    m_instantiated = true;
+    TheTextureManager = &m_texManager;
   }
 
   bool init(const char* title, int xpos, int ypos,
@@ -31,26 +29,23 @@ public:
 
   bool isRunning() { return m_bRunning; }
 
-  SDL_Renderer* getRenderer() const { return m_pRenderer; }
-
 private:
-  Game();
-  ~Game() { delete s_pInstance; }
 
-  static Game* s_pInstance;
+  static bool m_instantiated;
 
   bool m_bRunning;
+
+  // game services
 
   SDL_Window* m_pWindow;
   SDL_Renderer* m_pRenderer;
 
   int m_currentFrame;
 
-  TextureManager TheTextureManager;
+  TextureManager m_texManager;
+  TextureManager* TheTextureManager;
 
-  std::vector<GameObject*> m_gameObjects;
+  std::vector<SDLGameObject*> m_gameObjects;
 };
-
-typedef Game TheGame;
 
 #endif // defined GAME_H

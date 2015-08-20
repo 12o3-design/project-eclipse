@@ -3,9 +3,10 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
-#include <map>
+#include <unordered_map>
 #include <iostream>
 #include <assert.h>
+// #include "texture.h"
 
 class TextureManager
 {
@@ -15,7 +16,8 @@ public:
     assert(!instantiated);
     instantiated = true;
   }
-  ~TextureManager() {}
+  ~TextureManager();
+
   bool load(std::string filename, std::string id,
     SDL_Renderer* pRenderer);
 
@@ -28,7 +30,7 @@ public:
 
 private:
   static bool instantiated;
-  std::map<std::string, SDL_Texture*> m_textureMap;
+  std::unordered_map<std::string, SDL_Texture*> m_textureMap;
 };
 
 #endif // define TEXTURE_H

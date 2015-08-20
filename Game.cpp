@@ -1,12 +1,7 @@
 #include <iostream>
 #include "Game.h"
 
-Game* Game::s_pInstance = 0;
-
-Game::Game()
-{
-
-}
+bool Game::m_instantiated = false;
 
 bool Game::init(const char* title, int xpos, int ypos,
   int width, int height, bool fullscreen)
@@ -23,6 +18,7 @@ bool Game::init(const char* title, int xpos, int ypos,
     std::cout << "SDL init success" << std::endl;
 
     // init the window
+
     m_pWindow = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
 
     // if window init success
@@ -62,13 +58,15 @@ bool Game::init(const char* title, int xpos, int ypos,
   m_bRunning = true;
 
 // testing
-
-  if(!TheTextureManager.load("assets/animate-alpha.png", "animate", m_pRenderer))
+  std:: cout << "loading textures" << std::endl;
+  if(!m_texManager.load("assets/animate-alpha.png", "animate", m_pRenderer))
   {
     return false;
   }
 
+  std::cout << "textures loaded. making objects" << std::endl;
   m_gameObjects.push_back(new Player(new LoaderParams(100,100,128,82,"animate")));
+
   m_gameObjects.push_back(new Enemy(new LoaderParams(300,300,128,82,"animate")));
 
   return true;
@@ -81,9 +79,9 @@ void Game::render()
   SDL_RenderClear(m_pRenderer);
 
   // loop and draw objects
-  for (std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
+  for (std::vector<SDLGameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
   {
-    m_gameObjects[i]->draw(TheTextureManager);
+    m_gameObjects[i]->draw(m_pRenderer, TheTextureManager);
   }
 
   // draw to screen
@@ -119,6 +117,7 @@ void Game::handleEvents()
 void Game::clean()
 {
   std::cout << "cleaning game" << std::endl;
+  m_gameObjects.clear(); // deletes all game objects
   SDL_DestroyWindow(m_pWindow);
   SDL_DestroyRenderer(m_pRenderer);
   SDL_Quit();

@@ -5,9 +5,9 @@ Player::Player(const LoaderParams* pParams) : SDLGameObject(pParams)
 
 }
 
-void Player::draw(TextureManager& TheTextureManager)
+void Player::draw(SDL_Renderer* m_renderer, TextureManager* m_textureManager)
 {
-  SDLGameObject::draw(TheTextureManager);
+  SDLGameObject::draw(m_renderer, m_textureManager);
 }
 
 void Player::update()
