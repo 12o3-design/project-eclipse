@@ -2,11 +2,16 @@
 #define GAME_H
 
 #include <SDL2/SDL.h>
+#include <assert>
 
 class Game
 {
 public:
-  Game() {};
+  Game()
+  {
+    assert(!instantiated_);
+    instantiated_ = true;
+  };
   ~Game() {};
 
   void setup(const char* title, int xPos, int yPos, int width, int height, int flags);

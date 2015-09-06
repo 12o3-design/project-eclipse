@@ -1,10 +1,9 @@
 #include "Game.h"
-#include <SDL2/SDL.h>
 #include <iostream>
 
 void Game::setup(const char* title, int xPos, int yPos, int width, int height, int flags)
 {
-  if(SDL_Init(SDL_INIT_EVERYTHING == 0))
+  if(SDL_Init(SDL_INIT_EVERYTHING) == 0)
   {
     std::cout << "SDL_Init success" << std::endl;
     // creates new window
@@ -34,7 +33,18 @@ void Game::setup(const char* title, int xPos, int yPos, int width, int height, i
 
 void Game::handleInput()
 {
-
+  SDL_Event event;
+  if (SDL_PollEvent(&event))
+  {
+    switch (event.type)
+    {
+      case SDL_QUIT:
+        running_ = false;
+        break;
+      default:
+        break;
+    }
+  }
 }
 
 void Game::update()

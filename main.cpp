@@ -3,7 +3,7 @@
 
 int main(int argc, char* argv[])
 {
-  Game* TheGame = new Game;
+  Game* TheGame = new Game();
 
   std::cout << "making game" << std::endl;
 
