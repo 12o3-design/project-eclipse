@@ -1,6 +1,8 @@
 #include "Game.h"
 #include <iostream>
 
+bool Game::instantiated_ = false;
+
 void Game::setup(const char* title, int xPos, int yPos, int width, int height, int flags)
 {
   if(SDL_Init(SDL_INIT_EVERYTHING) == 0)
@@ -20,6 +22,7 @@ void Game::setup(const char* title, int xPos, int yPos, int width, int height, i
         std::cout << "SDL_CreateRenderer success" << std::endl;
         SDL_SetRenderDrawColor(renderer_, 255,255,255,255);
         running_ = true;
+        instantiated_ = true;
       }
     }
   }

@@ -2,7 +2,7 @@
 #define GAME_H
 
 #include <SDL2/SDL.h>
-#include <assert>
+#include <assert.h>
 
 class Game
 {
